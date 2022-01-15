@@ -46,6 +46,10 @@ on post-fs
     start init-sensors_fix-sh
 
 on post-fs-data
+    # Create folder of cameralog
+    mkdir /data/vendor/camera/offlinelog 0777 cameraserver audio
+    chmod 0666 /dev/camlog
+
     # Create data folder for nv_mac
     mkdir /data/vendor/mac_addr 0770 system wifi
 
