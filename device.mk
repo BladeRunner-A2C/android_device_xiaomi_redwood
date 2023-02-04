@@ -73,7 +73,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 
 # Camera
-$(call inherit-product-if-exists, device/xiaomi/lisa-miuicamera/config.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/camera/miuicamera.mk)
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -100,16 +100,12 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
-# Device Settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
-
 # Display / Graphics
 TARGET_GRALLOC_HANDLE_HAS_NO_RESERVED_SIZE := true
 
 PRODUCT_PACKAGES += \
     disable_configstore \
-    lights.lisa
+    lights.redwood
 
 PRODUCT_ODM_PROPERTIES += \
     persist.sys.sf.color_mode=0 \
@@ -168,8 +164,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.hardware.fingerprint=fpc \
-    persist.vendor.sys.fp.vendor=fpc
+    ro.hardware.fingerprint=goodix \
+    persist.vendor.sys.fp.vendor=goodix
 
 # FRP
 PRODUCT_VENDOR_PROPERTIES += \
@@ -198,11 +194,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Init scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.lisa.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.lisa.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.lisa.perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.lisa.perf.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.redwood.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.redwood.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.redwood.perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.redwood.perf.rc \
     $(LOCAL_PATH)/rootdir/etc/init.recovery.qcom.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.qcom.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
-    $(LOCAL_PATH)/rootdir/etc/ueventd.lisa.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc
+    $(LOCAL_PATH)/rootdir/etc/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/bin/init.mi.usb.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.mi.usb.sh \
@@ -219,7 +214,7 @@ PRODUCT_COPY_FILES += \
 
 # Kernel
 KERNEL_MODULES_INSTALL := dlkm
-KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/lisa/$(KERNEL_MODULES_INSTALL)/lib/modules
+KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/redwood/$(KERNEL_MODULES_INSTALL)/lib/modules
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -251,19 +246,13 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    AOSPALisaFrameworksOverlay \
-    AOSPALisaSystemUIOverlay \
-    LisaCNSettingsProviderOverlay \
-    LisaCNWifiOverlay \
-    LisaCarrierConfigOverlay \
-    LisaFrameworksOverlay \
-    LisaGLSettingsProviderOverlay \
-    LisaGLWifiOverlay \
-    LisaINSettingsProviderOverlay \
-    LisaINWifiOverlay \
-    LisaSettingsOverlay \
-    LisaSystemUIOverlay \
-    LisaWifiOverlay \
+    AOSPARedwoodFrameworksOverlay \
+    AOSPARedwoodSystemUIOverlay \
+    RedwoodCarrierConfigOverlay \
+    RedwoodFrameworksOverlay \
+    RedwoodSettingsOverlay \
+    RedwoodSystemUIOverlay \
+    RedwoodWifiOverlay \
     NoCutoutOverlay
 
 # Partitions
@@ -340,7 +329,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 endif
 
 # Vendor blobs
-$(call inherit-product, vendor/xiaomi/lisa/lisa-vendor.mk)
+$(call inherit-product, vendor/xiaomi/redwood/redwood-vendor.mk)
 
 # Verified Boot
 PRODUCT_COPY_FILES += \

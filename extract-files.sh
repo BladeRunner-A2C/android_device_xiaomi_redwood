@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=lisa
+DEVICE=redwood
 VENDOR=xiaomi
 
 # Load extract_utils and do some sanity checks
@@ -77,9 +77,6 @@ function blob_fixup() {
             # 21 00 80 52     mov        w1,#0x1
             # 1f 20 03 d5     nop
             sed -i "s/\x21\x00\x80\x52\x29\x07\x00\x94/\x21\x00\x80\x52\x1f\x20\x03\xd5/g" "${2}"
-            ;;
-        vendor/lib64/libwa_sat.so)
-            sed -i 's/\/system\/lib64\([^\/]\)/\/vendor\/lib64\1/g' "${2}"
             ;;
     esac
 }

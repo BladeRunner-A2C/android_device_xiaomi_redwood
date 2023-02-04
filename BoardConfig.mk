@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/xiaomi/lisa
+DEVICE_PATH := device/xiaomi/redwood
 
 # Architecture
 TARGET_ARCH := arm64
@@ -35,22 +35,19 @@ AB_OTA_PARTITIONS := \
     vendor_boot
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := lisa
+TARGET_BOOTLOADER_BOARD_NAME := redwood
 
 # Build
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES  := true
-
-# Firmware
--include vendor/xiaomi/lisa-firmware/BoardConfigVendor.mk
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(DEVICE_PATH)/configs/hidl/device_framework_compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_lisa
-TARGET_RECOVERY_DEVICE_MODULES := libinit_lisa
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_redwood
+TARGET_RECOVERY_DEVICE_MODULES := libinit_redwood
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 3
@@ -82,22 +79,23 @@ BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-KERNEL_DEFCONFIG := lisa_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/lisa
+KERNEL_DEFCONFIG := redwood_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/redwood
 
 BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/adsp_loader_dlkm.ko \
     $(KERNEL_MODULES_OUT)/apr_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/aw882xx_dlkm.ko \
     $(KERNEL_MODULES_OUT)/bolero_cdc_dlkm.ko \
     $(KERNEL_MODULES_OUT)/bt_fm_slim.ko \
     $(KERNEL_MODULES_OUT)/btpower.ko \
     $(KERNEL_MODULES_OUT)/camera.ko \
+    $(KERNEL_MODULES_OUT)/cnss2.ko \
     $(KERNEL_MODULES_OUT)/device_management_service_v01.ko \
-    $(KERNEL_MODULES_OUT)/fpc1020_tee.ko \
     $(KERNEL_MODULES_OUT)/goodix_core.ko \
-    $(KERNEL_MODULES_OUT)/goodix_ts_gesture.ko \
-    $(KERNEL_MODULES_OUT)/goodix_ts_tools.ko \
+    $(KERNEL_MODULES_OUT)/goodix_tee.ko \
     $(KERNEL_MODULES_OUT)/hdmi_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/hid-aksys.ko \
     $(KERNEL_MODULES_OUT)/hwid.ko \
     $(KERNEL_MODULES_OUT)/icnss2.ko \
     $(KERNEL_MODULES_OUT)/ir-spi.ko \
@@ -106,6 +104,8 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/machine_dlkm.ko \
     $(KERNEL_MODULES_OUT)/mbhc_dlkm.ko \
     $(KERNEL_MODULES_OUT)/mi_thermal_interface.ko \
+    $(KERNEL_MODULES_OUT)/mmhardware_detect.ko \
+    $(KERNEL_MODULES_OUT)/mmhardware_sysfs_dlkm.ko \
     $(KERNEL_MODULES_OUT)/native_dlkm.ko \
     $(KERNEL_MODULES_OUT)/nfc_i2c.ko \
     $(KERNEL_MODULES_OUT)/pinctrl_lpi_dlkm.ko \
@@ -114,7 +114,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/q6_dlkm.ko \
     $(KERNEL_MODULES_OUT)/q6_notifier_dlkm.ko \
     $(KERNEL_MODULES_OUT)/q6_pdr_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/qti_battery_charger_main.ko \
+    $(KERNEL_MODULES_OUT)/qti_battery_charger.ko \
     $(KERNEL_MODULES_OUT)/radio-i2c-rtc6226-qca.ko \
     $(KERNEL_MODULES_OUT)/rmnet_core.ko \
     $(KERNEL_MODULES_OUT)/rmnet_ctl.ko \
@@ -129,14 +129,10 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/swr_dlkm.ko \
     $(KERNEL_MODULES_OUT)/swr_dmic_dlkm.ko \
     $(KERNEL_MODULES_OUT)/swr_haptics_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/tfa98xx_dlkm.ko \
     $(KERNEL_MODULES_OUT)/tx_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/us_prox_iio.ko \
     $(KERNEL_MODULES_OUT)/usb_f_dtp.ko \
     $(KERNEL_MODULES_OUT)/usbdtp.ko \
     $(KERNEL_MODULES_OUT)/va_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd937x_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd937x_slave_dlkm.ko \
     $(KERNEL_MODULES_OUT)/wcd938x_dlkm.ko \
     $(KERNEL_MODULES_OUT)/wcd938x_slave_dlkm.ko \
     $(KERNEL_MODULES_OUT)/wcd9xxx_dlkm.ko \
@@ -145,7 +141,8 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/wlan_firmware_service_v01.ko \
     $(KERNEL_MODULES_OUT)/wsa883x_dlkm.ko \
     $(KERNEL_MODULES_OUT)/wsa_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/xiaomi_touch.ko
+    $(KERNEL_MODULES_OUT)/xiaomi_touch.ko \
+    $(KERNEL_MODULES_OUT)/xiaomifp.ko
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -177,7 +174,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_ODM := odm
 
 # Power
-TARGET_POWER_FEATURE_EXT_LIB := //$(DEVICE_PATH):libpowerfeature_ext_lisa
+TARGET_POWER_FEATURE_EXT_LIB := //$(DEVICE_PATH):libpowerfeature_ext_redwood
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
@@ -200,7 +197,6 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
