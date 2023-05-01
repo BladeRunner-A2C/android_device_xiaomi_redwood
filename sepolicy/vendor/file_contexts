@@ -22,6 +22,8 @@
 
 # Fingerprint
 /data/vendor/goodix(/.*)?                                                 u:object_r:vendor_fingerprint_data_file:s0
+/dev/goodix_fp                                                            u:object_r:vendor_fingerprint_device:s0
+/mnt/vendor/persist/goodix(/.*)?                                          u:object_r:vendor_fingerprint_data_file:s0
 
 # IR
 /dev/ir_spi                                                               u:object_r:ir_spi_device:s0
