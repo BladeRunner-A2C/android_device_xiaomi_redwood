@@ -22,7 +22,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a55
 
 # A/B
 AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS := \
+AB_OTA_PARTITIONS += \
     boot \
     dtbo \
     odm \
@@ -95,7 +95,6 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/goodix_core.ko \
     $(KERNEL_MODULES_OUT)/goodix_tee.ko \
     $(KERNEL_MODULES_OUT)/hdmi_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/hid-aksys.ko \
     $(KERNEL_MODULES_OUT)/hwid.ko \
     $(KERNEL_MODULES_OUT)/icnss2.ko \
     $(KERNEL_MODULES_OUT)/ir-spi.ko \

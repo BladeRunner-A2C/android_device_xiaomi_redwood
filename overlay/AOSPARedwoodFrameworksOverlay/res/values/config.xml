@@ -17,7 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Pocket Lock -->
-    <bool name="config_pocketModeSupported">false</bool>
+    <bool name="config_pocketModeSupported">true</bool>
 
     <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
     <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/qcom-battery/fastchg_mode</string>
@@ -56,7 +56,7 @@
     -->
 
     <!-- Build fingerprint from stock ROM -->
-    <string name="config_stockFingerprint" translatable="false">Xiaomi/lisa_global/lisa:13/TKQ1.220829.002/V14.0.3.0.TKOMIXM:user/release-keys</string>
+    <string name="config_stockFingerprint" translatable="false">Redmi/redwood/redwood:13/RKQ1.211001.001/V14.0.1.0.TMSMIXM:user/release-keys</string>
 
     <!-- Device model (Build.MODEL) to spoof for netflix, if not empty -->
     <string name="config_netflixSpoofModel" translatable="false">M2101K9G</string>
