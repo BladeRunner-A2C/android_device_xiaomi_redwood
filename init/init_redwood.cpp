@@ -30,12 +30,13 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <cstdlib>
 #include <string.h>
 
+#include <cstdlib>
+
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
-#include <sys/_system_properties.h>
 #include <android-base/properties.h>
+#include <sys/_system_properties.h>
 
 #include "property_service.h"
 #include "vendor_init.h"
@@ -44,13 +45,11 @@ using android::base::GetProperty;
 using std::string;
 
 // list of partitions to override props
-static const string source_partitions[] = {
-    "", "bootimage.", "odm.", "product.",
-    "system.", "system_ext.", "vendor."
-};
+static const string source_partitions[] = {"",        "bootimage.",  "odm.",   "product.",
+                                           "system.", "system_ext.", "vendor."};
 
 void property_override(char const prop[], char const value[]) {
-    auto pi = (prop_info*) __system_property_find(prop);
+    auto pi = (prop_info *)__system_property_find(prop);
 
     if (pi != nullptr)
         __system_property_update(pi, value, strlen(value));
@@ -68,7 +67,7 @@ void set_ro_build_prop(const string &prop, const string &value) {
 }
 
 void set_device_props(const string model, const string name, const string marketname,
-        const string mod_device) {
+                      const string mod_device) {
     set_ro_build_prop("model", model);
     set_ro_build_prop("name", name);
     set_ro_build_prop("marketname", marketname);
@@ -81,11 +80,11 @@ void vendor_load_properties() {
     // Detect variant and override properties
     string region = GetProperty("ro.boot.hwc", "");
 
-    if (region == "CN") { // China
+    if (region == "CN") {  // China
         set_device_props("22101320C", "redwood", "Redmi Note 12 Pro Speed", "redwood");
-    } else if (region == "IN") { // India
+    } else if (region == "IN") {  // India
         set_device_props("22101320I", "redwood_in", "POCO X5 Pro", "redwood_in_global");
-    } else { // Global
+    } else {  // Global
         set_device_props("22101320G", "redwood_global", "POCO X5 Pro", "redwood_global");
     }
 
