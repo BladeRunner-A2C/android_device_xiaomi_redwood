@@ -99,8 +99,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Display / Graphics
-TARGET_GRALLOC_HANDLE_HAS_NO_RESERVED_SIZE := true
-
 PRODUCT_PACKAGES += \
     disable_configstore \
     lights.redwood
@@ -120,11 +118,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.disable_backpressure=1 \
     persist.sys.sf.native_mode=258 \
     ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.lahaina.api30 \
-    ro.vendor.display.dither=true \
-    ro.vendor.display.mi_calib.enable=true \
     ro.vendor.display.sensortype=2 \
-    ro.vendor.histogram.enable=true \
-    ro.vendor.xiaomi.bl.poll=true \
     vendor.display.qdcm.mode_combine=2
 
 # Doze
