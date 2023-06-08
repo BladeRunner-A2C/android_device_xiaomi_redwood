@@ -46,14 +46,12 @@
     <string name="config_deviceDcDimmingSysfsNode">/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure</string>
 
     <!-- Defines the value used by the device sysfs node
-         to enable DC dimming
+         to enable DC dimming -->
     <string name="config_deviceDcDimmingEnableValue">1</string>
-    -->
 
     <!-- Defines the value used by the device sysfs node
-         to disable DC dimming
+         to disable DC dimming -->
     <string name="config_deviceDcDimmingDisableValue">0</string>
-    -->
 
     <!-- Build fingerprint from stock ROM -->
     <string name="config_stockFingerprint" translatable="false">Redmi/redwood/redwood:13/RKQ1.211001.001/V14.0.1.0.TMSMIXM:user/release-keys</string>

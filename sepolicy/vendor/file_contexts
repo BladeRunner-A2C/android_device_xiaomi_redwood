@@ -32,7 +32,7 @@
 /vendor/bin/hw/dolbycodec2                                                u:object_r:mediacodec_exec:s0
 
 # NV MAC
-/vendor/bin/nv_mac                                                        u:object_r:vendor_wcnss_service_exec:s0      
+/vendor/bin/nv_mac                                                        u:object_r:vendor_wcnss_service_exec:s0
 
 # Sensors
 /dev/elliptic(.*)?                                                        u:object_r:sound_device:s0
