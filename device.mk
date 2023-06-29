@@ -266,7 +266,23 @@ TARGET_BOARD_PLATFORM := lahaina
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # QC common
-TARGET_COMMON_QTI_COMPONENTS := all
+TARGET_COMMON_QTI_COMPONENTS := \
+    adreno \
+    audio \
+    av \
+    bt \
+    display \
+    gps \
+    init \
+    media \
+    nfc \
+    overlay \
+    perf \
+    telephony \
+    usb \
+    vibrator \
+    wfd \
+    wlan
 
 # QTEE
 PRODUCT_VENDOR_PROPERTIES += \
