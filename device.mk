@@ -284,6 +284,8 @@ TARGET_COMMON_QTI_COMPONENTS := \
     wfd \
     wlan
 
+TARGET_GPS_COMPONENT_VARIANT := gps
+
 # QTEE
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.qteeconnector.retrying_interval=30 \
