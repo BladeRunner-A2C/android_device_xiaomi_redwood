@@ -159,6 +159,9 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.fingerprint=goodix \
     persist.vendor.sys.fp.vendor=goodix
 
+# Firmware
+$(call inherit-product-if-exists, vendor/xiaomi/firmware/redwood/config.mk)
+
 # FRP
 PRODUCT_VENDOR_PROPERTIES += \
     ro.frp.pst=/dev/block/bootdevice/by-name/frp
